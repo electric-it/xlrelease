@@ -1,6 +1,6 @@
 
 # XL Release Server 4.0.x
-	
+[![Build Status](https://travis-ci.org/electric-it/xlrelease.svg?branch=develop)](https://travis-ci.org/electric-it/xlrelease)
 
 ## XebiaLabs home page and Admin manual
 [xebialabs.com](https://xebialabs.com)
