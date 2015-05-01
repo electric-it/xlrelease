@@ -1,48 +1,60 @@
 
-# XL Release Server 4.0.x
+# Chef cookbook for XL Release Server
+
+* Supported XL Release version: 4.0.x
 	
 
-## XebiaLabs home page and Admin manual
-[xebialabs.com](https://xebialabs.com)
- 
-[docs.xebialabs.com/xl-release/4.0.x/systemadminmanual.html](https://docs.xebialabs.com/xl-release/4.0.x/systemadminmanual.html)
+## XebiaLabs home page and XL Release documentation
 
-## Description
+* [xebialabs.com](https://xebialabs.com)
+* [docs.xebialabs.com/xl-release/](https://docs.xebialabs.com/xl-release/)
+
+## XL Release description
 
 XL Release is an end-to-end pipeline orchestration tool for Continuous Delivery and DevOps teams. It handles dependencies, release trains, and integration with change and release management.
 
-## Server requirements
+## Downloading XL Release server
+
+See the XebiaLabs ["Getting Started" page](https://docs.xebialabs.com/getting-started/index.html) for information on downloading XL Release.
+
+## XL Release server requirements
+
+From [docs.xebialabs.com/xl-release/4.0.x/systemadminmanual.html](https://docs.xebialabs.com/xl-release/4.0.x/systemadminmanual.html):
+
 To install the XL Release server, the following prerequisites must be met:
 
-1. XL Release license: You can download your license from https://tech.xebialabs.com/download/license.
-2. Operating system: Windows or Unix-family operating system running Java.
-3. Java Runtime Environment: JDK 7 (Oracle, IBM or Apple)
-4. RAM: At least 2GB of RAM available for XL Release.
-5. Hard disk space: At least 2GB of hard disk space to store the XL Release repository (this depends on your usage of XL Release)
+1. XL Release license: If you are an XL Release Community Edition user, you should have received your license during the sign-up process. Enterprise users can download their license from the [XebiaLabs licence server](https://tech.xebialabs.com/download/license) (requires credentials).
+1. Operating system: Windows or Unix-family operating system running Java.
+1. Java Runtime Environment: JDK 7 (Oracle, IBM or Apple)
+1. RAM: At least 2GB of RAM available for XL Release.
+1. Hard disk space: At least 2GB of hard disk space to store the XL Release repository (this depends on your usage of XL Release)
 	
 Depending on the environment, the following may also be required:
 
 1. Database: XL Release's repository may be stored in a database; for more information, see Configuring the repository
-2. LDAP: To enable group-based security, an LDAP x.509 compliant registry is required; for more information, see Configuring LDAP security
+1. LDAP: To enable group-based security, an LDAP x.509 compliant registry is required; for more information, see Configuring LDAP security
 
-## Download Installation Archive
-The cookbook is using wget to download the installation archive from xebialabs. 
+## Downloading the installation archive
+
+This cookbook uses `wget` to download the installation archive from XebiaLabs.
 Set attribute ['xlrelease']['downloadurl'] to this installation archive.
 Set attribute default['xlrelease']['username'] = 'supplied by xebialabs' 
 Set attribute default['xlrelease']['password'] = 'supplied by xebialabs'
 
-## Using the default recipe the below steps are executed.
-1. Creates xlrelease user and group.
-2. Creates an installation directory /opt/xl-release-4.0.x-server. This can be changed via attributes.
-3. wgets the XL Release installation archive from the ['xlrelease']['downloadurl'] attribute.
-4. Extracts the archive into the installation directory.
-5. Change ownership of the installation directory to be owned by xlrelease user and group.
-6. Configure the deployit.conf through the setup.config.txt.erb template. All values in this setup file can be overwritten by attributes.
-7. Kick off xlrelease installation program (server.sh included in installation archive).
-8. Configure xlrelease as a service (runit).
+## Using the default recipe the below steps are executed
 
-##Post Installation
-Add the license file to your installation directory ~/conf directory and restart xlrelease service
+1. Creates xlrelease user and group.
+2. Creates an installation directory `/opt/xl-release-4.0.x-server`. This can be changed via attributes.
+3. `wget`s the XL Release installation archive from the ['xlrelease']['downloadurl'] attribute.
+4. Extracts the archive into the installation directory.
+5. Changes ownership of the installation directory to be owned by xlrelease user and group.
+6. Configures the `xl-release-server.conf` file through the setup.config.txt.erb template. All values in this setup file can be overwritten by attributes.
+7. Kicks off XL Release's installation program (`server.sh` included in installation archive).
+8. Configures xlrelease as a service (using runit).
+
+## Post-installation steps
+
+Add the license file to your installation directory's `~/conf` subdirectory and restart the xlrelease service
 
 ```sv down xlrelease; sv up xlrelease```
 
