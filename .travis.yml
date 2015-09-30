@@ -5,6 +5,5 @@ sudo: false
 script: "gem install foodcritic -v 1.1.0 && foodcritic -f any ."
 
 rvm:
-- ruby-head
-- 2.1.1
-- 1.9.3
+- 2.2.3
+- 2.1.7
