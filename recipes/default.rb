@@ -23,22 +23,25 @@ user 'xlrelease' do
   shell     "/bin/false"
 end
 
-# ==========================================
-# wget installation archive
-# ==========================================
-execute "wget xlrelease installation archive" do
-  command "wget -P #{node['xlrelease']['installdir']} --user=#{node['xlrelease']['username']} --password=#{node['xlrelease']['password']} #{node['xlrelease']['downloadurl']}"
-end
-
-# ==========================================
-# xlrelease
-# ==========================================
-execute "unzip installation archive" do
-  command "unzip /opt/#{node['xlrelease']['filename']} -d /opt"
+# ==================================================
+# Download XL Release install zip
+# ==================================================
+remote_file "#{node['xlrelease']['installdir']}/#{node['xlrelease']['filename']}" do
+  source node['xlrelease']['downloadurl']
 end
 
 # ==================================================
-# chown install directory
+# Unzip install zip
+# ==================================================
+package "unzip" do
+  action :install
+end
+execute "unzip installation archive" do
+  command "unzip #{node['xlrelease']['installdir']}/#{node['xlrelease']['filename']} -d #{node['xlrelease']['installdir']}"
+end
+
+# ==================================================
+# Chown install directory
 # ==================================================
 execute "update ownership" do
   command "chown -R xlrelease:xlrelease #{node['xlrelease']['home']}"
@@ -54,18 +57,18 @@ template "setup-config" do
   group   node['xlrelease']['group']
   mode    "0600"
     variables(
-    :adminpassword  => "#{node['xlrelease']['adminpassword']}",
-    :repository  => "#{node['xlrelease']['repository']}",
-    :threads  => "#{node['xlrelease']['threads']}",
-    :ssl  => "#{node['xlrelease']['ssl']}",
-    :csre  => "#{node['xlrelease']['csre']}",
-    :http_bind  =>"#{node['xlrelease']['http_bind']}",
-    :http_context_root  => "#{node['xlrelease']['http_context_root']}",
-    :threads_max  => "#{node['xlrelease']['threads_max']}",
-    :cstm => "#{node['xlrelease']['cstm']}",
-    :hide_internals => "#{node['xlrelease']['hide_internals']}",
-    :import_packages => "#{node['xlrelease']['import_packages']}",
-    :port => "#{node['xlrelease']['port']}"
+    :adminpassword  => node['xlrelease']['adminpassword'],
+    :repository  => node['xlrelease']['repository'],
+    :threads  => node['xlrelease']['threads'],
+    :ssl  => node['xlrelease']['ssl'],
+    :csre  => node['xlrelease']['csre'],
+    :http_bind  => node['xlrelease']['http_bind'],
+    :http_context_root  => node['xlrelease']['http_context_root'],
+    :threads_max  => node['xlrelease']['threads_max'],
+    :cstm => node['xlrelease']['cstm'],
+    :hide_internals => node['xlrelease']['hide_internals'],
+    :import_packages => node['xlrelease']['import_packages'],
+    :port => node['xlrelease']['port']
     )
 
   notifies :run, 'execute[install-xlrelease]', :immediately
