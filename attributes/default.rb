@@ -1,7 +1,7 @@
 # ==================================================
 # XL Release version to install
 # ==================================================
-default['xlrelease']['version'] = '4.0.17'
+default['xlrelease']['version'] = '4.7.2'
 
 # ==================================================
 # Home directory for XL Release
