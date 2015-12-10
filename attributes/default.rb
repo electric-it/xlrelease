@@ -1,7 +1,7 @@
 # ==================================================
 # XL Release version to install
 # ==================================================
-default['xlrelease']['version'] = '4.0.17'
+default['xlrelease']['version'] = '4.7.2'
 
 # ==================================================
 # Home directory for XL Release
@@ -32,9 +32,9 @@ default['xlrelease']['import_packages'] = 'importablePackages'
 default['xlrelease']['port'] = '5516'
 
 # ==================================================
-# wget attributes
+# Attributes regarding the downloadable install zip
 # ==================================================
 default['xlrelease']['filename'] = "xl-release-#{node['xlrelease']['version']}-server.zip"
 default['xlrelease']['username'] = 'supplied by xebialabs'
 default['xlrelease']['password'] = 'supplied by xebialabs'
-default['xlrelease']['downloadurl'] = "https://dist.xebialabs.com/xl-release/4.0.17/#{node['xlrelease']['filename']}"
+default['xlrelease']['downloadurl'] = "https://#{node['xlrelease']['username']}:#{node['xlrelease']['password']}@dist.xebialabs.com/xl-release/#{node['xlrelease']['version']}/#{node['xlrelease']['filename']}"
