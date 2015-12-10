@@ -1,46 +1,34 @@
 # Chef cookbook for XL Release Server
 [![Build Status](https://travis-ci.org/electric-it/xlrelease.svg?branch=develop)](https://travis-ci.org/electric-it/xlrelease)
 
+* [xebialabs.com](https://xebialabs.com)
 * Supported XL Release version: 4.0.x
 
-## XebiaLabs home page and XL Release documentation
-
-* [xebialabs.com](https://xebialabs.com)
-* [docs.xebialabs.com/xl-release/](https://docs.xebialabs.com/xl-release/)
-
-## XL Release description
-
-XL Release is an end-to-end pipeline orchestration tool for Continuous Delivery and DevOps teams. It handles dependencies, release trains, and integration with change and release management.
-
-## Downloading XL Release server
-
-See the XebiaLabs ["Getting Started" page](https://docs.xebialabs.com/getting-started/index.html) for information on downloading XL Release.
-
-## XL Release server requirements
+# Server requirements
 
 From [docs.xebialabs.com/xl-release/4.0.x/systemadminmanual.html](https://docs.xebialabs.com/xl-release/4.0.x/systemadminmanual.html):
 
 To install the XL Release server, the following prerequisites must be met:
 
 1. XL Release license: If you are an XL Release Community Edition user, you should have received your license during the sign-up process. Enterprise users can download their license from the [XebiaLabs licence server](https://tech.xebialabs.com/download/license) (requires credentials).
-1. Operating system: Windows or Unix-family operating system running Java.
-1. Java Runtime Environment: JDK 7 (Oracle, IBM or Apple)
-1. RAM: At least 2GB of RAM available for XL Release.
-1. Hard disk space: At least 2GB of hard disk space to store the XL Release repository (this depends on your usage of XL Release)
-	
+2. Operating system: Windows or Unix-family operating system running Java.
+3. Java Runtime Environment: JDK 7 (Oracle, IBM or Apple)
+4. RAM: At least 2GB of RAM available for XL Release.
+5. Hard disk space: At least 2GB of hard disk space to store the XL Release repository (this depends on your usage of XL Release)
+
 Depending on the environment, the following may also be required:
 
 1. Database: XL Release's repository may be stored in a database; for more information, see Configuring the repository
-1. LDAP: To enable group-based security, an LDAP x.509 compliant registry is required; for more information, see Configuring LDAP security
+2. LDAP: To enable group-based security, an LDAP x.509 compliant registry is required; for more information, see Configuring LDAP security
 
-## Downloading the installation archive
+*Downloading the installation archive*
 
 This cookbook uses `wget` to download the installation archive from XebiaLabs.
 Set attribute ['xlrelease']['downloadurl'] to this installation archive.
-Set attribute default['xlrelease']['username'] = 'supplied by xebialabs' 
+Set attribute default['xlrelease']['username'] = 'supplied by xebialabs'
 Set attribute default['xlrelease']['password'] = 'supplied by xebialabs'
 
-## Using the default recipe the below steps are executed
+*Using the default recipe the below steps are executed*
 
 1. Creates xlrelease user and group.
 2. Creates an installation directory `/opt/xl-release-4.0.x-server`. This can be changed via attributes.
@@ -51,13 +39,13 @@ Set attribute default['xlrelease']['password'] = 'supplied by xebialabs'
 7. Kicks off XL Release's installation program (`server.sh` included in installation archive).
 8. Configures xlrelease as a service (using runit).
 
-## Post-installation steps
+# Post-installation
 
 Add the license file to your installation directory's `~/conf` subdirectory and restart the xlrelease service
 
 ```sv down xlrelease; sv up xlrelease```
 
-## Contributing
+# Contributing
 
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
@@ -74,7 +62,7 @@ you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
     http://www.apache.org/licenses/LICENSE-2.0
-    
+
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.

@@ -1,9 +1,3 @@
 language: ruby
 cache: bundler
 sudo: false
-
-script: "gem install foodcritic && foodcritic -f any ."
-
-rvm:
-- 2.2.1
-- 2.1.5
