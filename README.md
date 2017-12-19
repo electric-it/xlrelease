@@ -4,6 +4,8 @@
 * [xebialabs.com](https://xebialabs.com)
 * Supported XL Release version: 4.0.x
 
+Supermarket: https://supermarket.chef.io/cookbooks/xlrelease
+
 # Server requirements
 
 From [docs.xebialabs.com/xl-release/4.0.x/systemadminmanual.html](https://docs.xebialabs.com/xl-release/4.0.x/systemadminmanual.html):
