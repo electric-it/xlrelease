@@ -10,3 +10,4 @@ deploy:
   provider: chef-supermarket
   user_id: berniedurfee-ge
   client_key: berniedurfee-ge.pem
+  cookbook_category: Other
