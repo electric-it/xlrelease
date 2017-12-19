@@ -8,6 +8,7 @@ supports 'centos'
 
 license 'Apache v2.0'
 
+# Check for resolution on (https://github.com/travis-ci/dpl/issues/464) before uncommenting
 # source_url 'https://github.com/electric-it/xlrelease'
 # issues_url 'https://github.com/electric-it/xlrelease/issues'
 
