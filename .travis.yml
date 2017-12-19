@@ -7,6 +7,7 @@ before_deploy:
   -in berniedurfee-ge.txt -out berniedurfee-ge.pem -d
 
 deploy:
+  skip_cleanup: true
   provider: chef-supermarket
   user_id: berniedurfee-ge
   client_key: berniedurfee-ge.pem
