@@ -8,8 +8,8 @@ supports 'centos'
 
 license 'Apache v2.0'
 
-source_url 'https://github.com/electric-it/xlrelease'
-issues_url 'https://github.com/electric-it/xlrelease/issues'
+# source_url 'https://github.com/electric-it/xlrelease'
+# issues_url 'https://github.com/electric-it/xlrelease/issues'
 
 depends 'runit',  '~> 1.5'
 depends 'java',   '~> 1.25'
